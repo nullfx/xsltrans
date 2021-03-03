@@ -83,12 +83,6 @@ namespace xsltrans {
                 if ( outputStream == null ) {
                     Console.Error.WriteLine ( "outputStream was null, using an in memory stream for transform output" );
                 }
-                // validate output stream can handle our output (require file buffer if xml is large enough)
-                //if ( outputStream is MemoryStream && inputXmlStream.BaseStream.Length > ushort.MaxValue ) {
-                //    var exMsg = string.Format ( "Cannot transform large XML files using a Memory Stream (outputStream must be a file stream)\r\nXML Size (bytes) {0}", inputXmlStream.Length );
-                //    Console.Error.WriteLine ( exMsg );
-                //    throw new InvalidOperationException ( exMsg );
-                //}
                 Console.Error.WriteLine (  "Starting transform" );
                 // load the document and perform the transform
                 var xmlDoc = new XPathDocument ( inputXmlStream );
@@ -96,7 +90,6 @@ namespace xsltrans {
                 try {
                     transform.Transform ( xmlDoc, argList, new XmlTextWriter ( outputStream, new UTF8Encoding ( false ) ) );
                     success = true;
-                    //Console.Error.WriteLine (  "Transformation complete" );
                 } catch ( Exception ex ) {
                     success = false;
                     Console.Error.WriteLine ( "Error transforming XML.  Details: {0}", ex );
