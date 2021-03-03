@@ -14,7 +14,7 @@ namespace xsltrans {
         private static string xmlfile { get; set; }
         [Argument('F', "folder", "Folder path containing XML Files to transform (cannot specify both file and folder)" )]
         private static string xmlFolder { get; set; }
-        [Argument ( 'i', "--include", "When transforming XML files by folder specify file extensions to include (ex: -i *.xml or --include *.xml)" )]
+        [Argument ( 'i', "include", "When transforming XML files by folder specify file extensions to include (ex: -i *.xml or --include *.xml)" )]
         private static string xmlFileSearchPattern { get; set; }
         [Argument('o', "out", "Output file path")]
         private static string outputFile { get; set; }
