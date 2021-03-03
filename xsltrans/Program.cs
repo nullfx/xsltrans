@@ -5,9 +5,10 @@ using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
 using System.Xml.XPath;
+using System.Linq;
 
 namespace xsltrans {
-    class Program {
+    public static class Program {
         [Argument('x', "xslt", "XSLT File Path")]
         private static string xsltPath { get; set; }
         [Argument('f', "file", "XML File to transform (cannot specify both file and folder)")]
@@ -24,6 +25,11 @@ namespace xsltrans {
         private static string[] operands { get; set; }
         static void Main ( string[] args ) {
             Arguments.Populate ( );
+            if(help) {
+                ShowHelp ( );
+                return;
+            }
+
             if(!File.Exists(xsltPath)) {
                 Console.WriteLine ( "XLST path does not exist" );
                 return;
@@ -97,6 +103,24 @@ namespace xsltrans {
                 }
             }
             return success;
+        }
+
+        private static void ShowHelp ( ) {
+            var helpAttributes = Arguments.GetArgumentInfo ( typeof ( Program ) );
+
+            var maxLen = helpAttributes.Select ( a => a.Property.PropertyType.ToColloquialString ( ) ).OrderByDescending ( s => s.Length ).FirstOrDefault ( ).Length;
+
+            Console.WriteLine ( $"Short\tLong\t{"Type".PadRight ( maxLen )}\tFunction" );
+            Console.WriteLine ( $"-----\t----\t{"----".PadRight ( maxLen )}\t--------" );
+
+            foreach ( var item in helpAttributes ) {
+                var result = item.ShortName + "\t" + item.LongName + "\t" + item.Property.PropertyType.ToColloquialString ( ).PadRight ( maxLen ) + "\t" + item.HelpText;
+                Console.WriteLine ( result );
+            }
+        }
+
+        public static string ToColloquialString ( this Type type ) {
+            return ( !type.IsGenericType ? type.Name : type.Name.Split ( '`' )[0] + "<" + String.Join ( ", ", type.GetGenericArguments ( ).Select ( a => a.ToColloquialString ( ) ) ) + ">" );
         }
     }
 }
