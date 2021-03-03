@@ -32,19 +32,27 @@ namespace xsltrans {
 
             if(!File.Exists(xsltPath)) {
                 Console.WriteLine ( "XLST path does not exist" );
+                Console.WriteLine ( "Type: xmltrans -h for more options" );
+                Console.WriteLine ( "\tEX: $ xmltrans -x ~/xml2csv.xslt -F ~/my_xml_files -o ~/output.csv" );
                 return;
             }
             if(!string.IsNullOrEmpty(xmlfile) && !string.IsNullOrEmpty(xmlFolder)) {
                 Console.WriteLine ( "You must only specify the XML File (-f --file) or the XML Folder (-F --folder), but not both" );
+                Console.WriteLine ( "Type: xmltrans -h for more options" );
+                Console.WriteLine ( "\tEX: $ xmltrans -x ~/xml2csv.xslt -F ~/my_xml_files -o ~/output.csv" );
                 return;
             }
             var isSingleFile = !string.IsNullOrWhiteSpace(xmlfile) && string.IsNullOrWhiteSpace(xmlFolder);
             if(!string.IsNullOrWhiteSpace(xmlfile) && !File.Exists(xmlfile) && string.IsNullOrWhiteSpace(xmlFolder)) {
                 Console.WriteLine ( "XML file does not exist" );
+                Console.WriteLine ( "Type: xmltrans -h for more options" );
+                Console.WriteLine ( "\tEX: $ xmltrans -x ~/xml2csv.xslt -F ~/my_xml_files -o ~/output.csv" );
                 return;
             }
             if(!string.IsNullOrWhiteSpace(xmlFolder) && Directory.GetFiles(xmlFolder).Length == 0) {
                 Console.WriteLine ( "XML folder path does not contain any files" );
+                Console.WriteLine ( "Type: xmltrans -h for more options" );
+                Console.WriteLine ( "\tEX: $ xmltrans -x ~/xml2csv.xslt -F ~/my_xml_files -o ~/output.csv" );
                 return;
             }
             var transform = new XslCompiledTransform ( );
@@ -66,7 +74,7 @@ namespace xsltrans {
                     foreach(var filePath in files) {
                         using ( var inputStream = new StreamReader ( filePath, true ) ) {
                             if ( !TransformXml ( inputStream, transform, outputStream ) ) {
-                                Console.WriteLine ( $"Failed to transform {xmlfile}" );
+                                Console.WriteLine ( $"Failed to transform {xmlFolder}.\r\n\t\"{filePath}\" had errors during processing, check your XSLT against this file" );
                                 return;
                             }
                         }
