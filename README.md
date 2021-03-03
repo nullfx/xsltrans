@@ -1,4 +1,4 @@
-# xmltrans - An XML Transform Utility
+# xsltrans - An XML Transform Utility
 A simple utility for applying an XSLT stylesheet to one or more XML files conceptually similar to [xsltproc](https://linux.die.net/man/1/xsltproc).  The utility can be run on a single XML file or by specifying a folder containing multiple XML files with a search pattern.
 
 ## Command Line Args
@@ -16,17 +16,17 @@ A simple utility for applying an XSLT stylesheet to one or more XML files concep
 ### Batch transform
 
 ```bash
-$ xmltrans -x ~/xml2csv.xslt -F ~/my_xml_files -o ~/output.csv
+$ xsltrans -x ~/xml2csv.xslt -F ~/my_xml_files -o ~/output.csv
 ```
 
 ### Batch transform with search filter
 
 ```bash
-$ xmltrans -x ~/xml2txt.xslt -F ~/my_xml_files -i *02_2020.xml -o ~/output.txt
+$ xsltrans -x ~/xml2txt.xslt -F ~/my_xml_files -i *02_2020.xml -o ~/output.txt
 ```
 
 ### Single File
 
 ```bash
-$ xmltrans -x ~/xml2html.xslt -f ~/my_doc.xml -o ~/output.html
+$ xsltrans -x ~/xml2html.xslt -f ~/my_doc.xml -o ~/output.html
 ```
