@@ -1,5 +1,5 @@
 # xsltrans - An XML Transform Utility
-A simple utility for applying an XSLT stylesheet to one or more XML files conceptually similar to [xsltproc](https://linux.die.net/man/1/xsltproc).  The utility can be run on a single XML file or by specifying a folder containing multiple XML files with a search pattern.
+A simple utility for applying an [XSLT](https://www.w3.org/TR/xslt/) stylesheet to one or more XML files conceptually similar to [xsltproc](https://linux.die.net/man/1/xsltproc).  The utility can be run on a single XML file or by specifying a folder containing multiple XML files with a search pattern.
 
 ## Command Line Args
 | Short | Long | Description |
