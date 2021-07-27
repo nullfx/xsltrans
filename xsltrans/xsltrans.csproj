@@ -6,6 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Utility.CommandLine.Arguments" Version="5.0.0" />
+    <PackageReference Include="Utility.CommandLine.Arguments" Version="6.0.0" />
   </ItemGroup>
 </Project>
